@@ -1,27 +1,17 @@
 import {Hsl} from "../Colors/Hsl";
 import {Rgb} from "../Colors/Rgb";
 import {IPosition} from "../Types/IPosition";
+import {Shape} from "./Shape";
 import {Canvas} from "../Canvas";
 
-export class Rectangle {
-    private readonly ctx: CanvasRenderingContext2D;
-    private position: IPosition;
-    private readonly speed: number;
-    public direction: number;
+export class Rectangle extends Shape {
     private readonly width: number;
     private readonly height: number;
-    color: Hsl | Rgb;
-    private canvas: Canvas;
 
-    constructor(canvas: Canvas, color: Hsl | Rgb, position: IPosition, width: number, height: number) {
-        this.canvas = canvas;
-        this.ctx = canvas.ctx;
-        this.position = position;
+    constructor(canvas: Canvas, width: number, height: number, color?: Hsl | Rgb, position?: IPosition, speed?: number, direction?: number) {
+        super(canvas, position, color, speed, direction);
         this.width = width;
         this.height = height;
-        this.color = color;
-        this.speed = 3;
-        this.direction = Math.random() * Math.PI * 2;
     }
 
     draw() {
